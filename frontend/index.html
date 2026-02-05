@@ -2,21 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Dashboard</title>
-    <style>
-        body { font-family: sans-serif; text-align: center; padding: 50px; background-color: #fafafa; }
-        .welcome-card { background: white; padding: 40px; border-radius: 10px; display: inline-block; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        a { color: #007bff; text-decoration: none; font-weight: bold; }
-    </style>
+    <title>Login - Research Grant System</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="bg-blue-gradient">
 
-    <div class="welcome-card">
-        <h1>Welcome Back!</h1>
-        <p>You have successfully logged into the system.</p>
-        <hr>
-        <p><a href="login.html">Logout</a></p>
+    <div class="auth-card">
+        <h2>LOGIN</h2>
+        
+        <form action="#" method="POST"> 
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" name="email" placeholder="Enter your email">
+            </div>
+            
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Enter your password">
+            </div>
+
+            <button type="button" class="btn-primary" onclick="window.location.href='dashboardresearcher.html'">LOGIN</button>
+        </form>
+
+        <div class="auth-footer">
+            No account found? Please <a href="register.html">Register</a>
+        </div>
     </div>
 
 </body>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register - Research Grant System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-blue-gradient">
+
+    <div class="auth-card" style="width: 450px;">
+        <h2>Create Account</h2>
+        
+        <form action="#" method="POST">
+            
+            <div class="input-group">
+                <label>Full Name</label>
+                <input type="text" name="fullname" placeholder="Enter your full name">
+            </div>
+
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" name="email" placeholder="you@mmu.edu.my">
+            </div>
+            
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="*******">
+            </div>
+
+            <div class="password-reqs">
+                Password must contain:<br>
+                • 8+ characters<br>
+                • 1 uppercase letter<br>
+                • 1 number<br>
+                • 1 special character
+            </div>
+
+            <div class="input-group">
+                <label>Confirm Password</label>
+                <input type="password" name="confirm_password" placeholder="*******">
+            </div>
+
+            <button type="submit" class="btn-primary">Register</button>
+        </form>
+
+        <div class="auth-footer">
+            Already Have an Account? <a href="index.html">Login</a>
+        </div>
+    </div>
+
+</body>
+</html>
