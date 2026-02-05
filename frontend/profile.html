@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile - Research Grant System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="main-layout">
+    <aside class="sidebar">
+        <div class="sidebar-header"><i class="fas fa-bars"></i> Research Grant System</div>
+        <ul class="sidebar-menu">
+            <li><a href="dashboardresearcher.html"><i class="fas fa-chart-bar"></i> Dashboard</a></li>
+            <li><a href="my-proposals.html"><i class="fas fa-folder"></i> My Proposals</a></li>
+            <li><a href="submit-new.html"><i class="fas fa-plus"></i> Submit New</a></li>
+            <li><a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
+            <li><a href="profile.html" class="active"><i class="fas fa-user"></i> Profile</a></li>
+        </ul>
+        <div class="sidebar-footer"><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></div>
+    </aside>
+
+    <div class="content">
+        <div class="top-bar">
+            <div></div> 
+            <div class="user-info">
+                <span>[User Name] <i class="fas fa-user-circle"></i></span>
+            </div>
+        </div>
+
+        <div class="scrollable-content">
+            
+            <div class="profile-wrapper">
+                
+                <form class="profile-card" method="POST">
+                    <h2>Edit Profile</h2>
+
+                    <div class="profile-input-group">
+                        <label>Full Name</label>
+                        <input type="text" name="full_name" value="" placeholder="[Full Name from DB]">
+                    </div>
+
+                    <div class="profile-input-group">
+                        <label>Email Address</label>
+                        <input type="email" name="email" value="" placeholder="[Email from DB]">
+                    </div>
+
+                    <div class="profile-input-group">
+                        <label>Password</label>
+                        <input type="password" name="password" placeholder="*******">
+                    </div>
+                    <span class="password-note">*Leave blank to keep current password</span>
+
+                    <div class="profile-input-group">
+                        <label>Confirm Password</label>
+                        <input type="password" name="confirm_password" placeholder="*******">
+                    </div>
+
+                    <div class="profile-input-group custom-select-wrapper">
+                        <label>Department</label>
+                        <select name="department">
+                            <option value="cs">Computer Science</option>
+                            <option value="eng">Engineering</option>
+                            <option value="biz">Business</option>
+                        </select>
+                    </div>
+
+                    <div class="profile-input-group">
+                        <label>Phone Number</label>
+                        <input type="text" name="phone" value="" placeholder="[Phone Number from DB]">
+                    </div>
+
+                    <div style="margin-top: 30px; display: flex; justify-content: center; gap: 15px;">
+                        <button type="submit" class="btn-primary" style="width: auto; padding: 10px 30px;">Save Changes</button>
+                        <button type="button" style="padding: 10px 20px; border: 1px solid #ef4444; color: #ef4444; background: white; border-radius: 5px; cursor: pointer;">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

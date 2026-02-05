@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notifications - Reviewer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="main-layout">
+    <aside class="sidebar">
+        <div class="sidebar-header" style="color: #7c3aed;">
+            <i class="fas fa-bars"></i> Research Grant System
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="reviewer-dashboard.html"><i class="fas fa-chart-bar"></i> Dashboard</a></li>
+            <li><a href="reviewer-assigned.html"><i class="fas fa-clipboard-list"></i> Assigned Reviews</a></li>
+            <li><a href="reviewer-history.html"><i class="fas fa-history"></i> Review History</a></li>
+            <li><a href="reviewer-notifications.html" class="active-reviewer"><i class="fas fa-bell"></i> Notifications</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </aside>
+
+    <div class="content">
+        <div class="top-bar">
+            <h3>Notifications</h3>
+            <div class="user-info">
+                <span>Reviewer [Name] <i class="fas fa-user-circle"></i></span>
+            </div>
+        </div>
+
+        <div class="scrollable-content">
+            
+            <div style="background: #7c3aed; color: white; padding: 15px 20px; border-radius: 5px 5px 0 0; display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-weight: 500;">Notifications ([Count])</span>
+                <span style="font-size: 13px; cursor: pointer; opacity: 0.9;">Mark All as Read | Filter ▼</span>
+            </div>
+
+            <div style="background: white; border: 1px solid #e2e8f0; border-top: none; padding: 20px; border-radius: 0 0 5px 5px; min-height: 500px;">
+                
+                <h4 style="margin-bottom: 20px; color: #7c3aed; font-size: 14px; font-weight: 600;">
+                    <i class="fas fa-calendar-alt" style="margin-right: 8px;"></i> Recent
+                </h4>
+
+                <div class="notification-card" style="border-left: 4px solid #7c3aed; margin-bottom: 15px; background: white; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); padding: 15px; display: flex; justify-content: space-between; align-items: flex-start; border-right: 1px solid #eee; border-top: 1px solid #eee; border-bottom: 1px solid #eee;">
+                    
+                    <div class="notif-content" style="flex: 1;">
+                        <h5 style="color: #7c3aed; font-size: 15px; margin-bottom: 5px; font-weight: 600;">
+                            <i class="fas fa-check-circle"></i> [Notification Title]
+                        </h5>
+                        <p style="color: #666; font-size: 13px; margin: 0;">[Notification Message goes here...]</p>
+                    </div>
+
+                    <div class="notif-meta" style="text-align: right; margin-left: 20px; min-width: 100px;">
+                        <span style="display: block; font-size: 12px; color: #9ca3af; margin-bottom: 5px;">[Time Ago]</span>
+                        <a href="#" style="font-size: 12px; color: #7c3aed; text-decoration: none; font-weight: 600;">[Action Link]</a>
+                    </div>
+
+                </div>
+                </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
