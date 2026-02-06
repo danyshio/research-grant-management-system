@@ -10,7 +10,7 @@
     <div class="auth-card" style="width: 450px;">
         <h2>Create Account</h2>
         
-        <form action="#" method="POST">
+        <form action="../backend/register.php" method="POST">
             
             <div class="input-group">
                 <label>Full Name</label>

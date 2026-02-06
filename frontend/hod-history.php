@@ -1,3 +1,19 @@
+<?php
+session_start();
+include("../backend/db.php");
+
+$sql = "
+SELECT proposal.*, user.name AS researcher
+FROM proposal
+JOIN user ON proposal.userId = user.userId
+WHERE proposal.status='Approved' 
+   OR proposal.status='Rejected'
+ORDER BY proposal.proposalId DESC
+";
+
+$result = mysqli_query($conn, $sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,10 +27,10 @@
     <aside class="sidebar">
         <div class="sidebar-header" style="color: #16a34a;"><i class="fas fa-bars"></i> Research Grant System</div>
         <ul class="sidebar-menu">
-            <li><a href="hod-dashboard.html"><i class="fas fa-chart-bar"></i> Dashboard</a></li>
-            <li><a href="hod-decisions.html"><i class="fas fa-gavel"></i> Pending Decisions</a></li>
-            <li><a href="hod-history.html" class="active-hod"><i class="fas fa-check-double"></i> Approved History</a></li>
-            <li><a href="hod-notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
+            <li><a href="hod-dashboard.php"><i class="fas fa-chart-bar"></i> Dashboard</a></li>
+            <li><a href="hod-decisions.php"><i class="fas fa-gavel"></i> Pending Decisions</a></li>
+            <li><a href="hod-history.php" class="active-hod"><i class="fas fa-check-double"></i> Approved History</a></li>
+            <li><a href="hod-notifications.php"><i class="fas fa-bell"></i> Notifications</a></li>
         </ul>
         <div class="sidebar-footer"><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></div>
     </aside>
@@ -47,22 +63,35 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>#RG-2024-089</td>
-                            <td>[Health Tech Innovation]</td>
-                            <td>[Dr. Tan]</td>
-                            <td>[15 Jan 2026]</td>
-                            <td><span class="status-badge text-green"><i class="fas fa-check"></i> Approved</span></td>
-                            <td><a href="#" style="color: #666; font-size: 13px;">[View Record]</a></td>
-                        </tr>
-                        <tr>
-                            <td>#RG-2024-072</td>
-                            <td>[Obsolete Energy Methods]</td>
-                            <td>[Researcher B]</td>
-                            <td>[10 Dec 2025]</td>
-                            <td><span class="status-badge text-red"><i class="fas fa-times"></i> Rejected</span></td>
-                            <td><a href="#" style="color: #666; font-size: 13px;">[View Record]</a></td>
-                        </tr>
+                        <?php while($row = mysqli_fetch_assoc($result)) { ?>
+
+<tr>
+    <td>#RG-<?php echo $row['proposalId']; ?></td>
+
+    <td><?php echo $row['title']; ?></td>
+
+    <td><?php echo $row['researcher']; ?></td>
+
+    <td><?php echo $row['submissionDate']; ?></td>
+
+    <td>
+        <?php if($row['status'] == 'Approved'){ ?>
+            <span class="status-badge text-green">
+                <i class="fas fa-check"></i> Approved
+            </span>
+        <?php } else { ?>
+            <span class="status-badge text-red">
+                <i class="fas fa-times"></i> Rejected
+            </span>
+        <?php } ?>
+    </td>
+
+    <td>
+        <a href="#" style="color:#666; font-size:13px;">View Record</a>
+    </td>
+</tr>
+
+<?php } ?>
                         </tbody>
                 </table>
             </div>

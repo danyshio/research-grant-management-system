@@ -1,3 +1,28 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['userId'])){
+    header("Location: index.html");
+    exit();
+}
+
+include("../backend/db.php");
+
+$sql = "
+SELECT 
+    p.proposalID,
+    p.title,
+    r.decision,
+    r.comments,
+    r.reviewDate
+FROM review r
+JOIN proposal p ON r.proposalId = p.proposalID
+ORDER BY r.reviewDate DESC
+";
+
+$result = mysqli_query($conn, $sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,10 +38,10 @@
             <i class="fas fa-bars"></i> Research Grant System
         </div>
         <ul class="sidebar-menu">
-            <li><a href="reviewer-dashboard.html"><i class="fas fa-chart-bar"></i> Dashboard</a></li>
-            <li><a href="reviewer-assigned.html"><i class="fas fa-clipboard-list"></i> Assigned Reviews</a></li>
-            <li><a href="reviewer-history.html" class="active-reviewer"><i class="fas fa-history"></i> Review History</a></li>
-            <li><a href="reviewer-notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
+            <li><a href="reviewer-dashboard.php"><i class="fas fa-chart-bar"></i> Dashboard</a></li>
+            <li><a href="reviewer-assigned.php"><i class="fas fa-clipboard-list"></i> Assigned Reviews</a></li>
+            <li><a href="reviewer-history.php" class="active-reviewer"><i class="fas fa-history"></i> Review History</a></li>
+            <li><a href="reviewer-notifications.php"><i class="fas fa-bell"></i> Notifications</a></li>
         </ul>
         <div class="sidebar-footer">
             <a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
@@ -27,7 +52,7 @@
         <div class="top-bar">
             <h3>Review History</h3>
             <div class="user-info">
-                <span>Reviewer [Name] <i class="fas fa-user-circle"></i></span>
+                <span>Reviewer <?php echo $_SESSION['userName']; ?> <i class="fas fa-user-circle"></i></span>
             </div>
         </div>
 
@@ -72,23 +97,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>#[Ref ID]</td>
-                            <td>[Proposal Title]</td>
-                            <td>[Researcher Name]</td>
-                            <td>[Date]</td>
-                            
-                            <td><span style="font-weight: bold; color: #4b5563;">[8]/10</span></td>
-                            
-                            <td>
-                                <span class="status-badge text-green"><i class="fas fa-check"></i> Recommended Approval</span>
-                            </td>
-                            
-                            <td>
-                                <a href="#" class="btn-purple" style="padding: 5px 15px; font-size: 12px;">View Details</a>
-                            </td>
-                        </tr>
-                        </tbody>
+<?php while($row = mysqli_fetch_assoc($result)) { ?>
+<tr>
+    <td>#<?php echo $row['proposalID']; ?></td>
+    <td><?php echo $row['title']; ?></td>
+    <td>--</td>
+    <td><?php echo $row['reviewDate']; ?></td>
+    <td>--</td>
+    <td>
+        <span class="status-badge text-green">
+            <?php echo $row['decision']; ?>
+        </span>
+    </td>
+    <td>
+        <a href="#" class="btn-purple" style="padding:5px 15px; font-size:12px;">
+            View Details
+        </a>
+    </td>
+</tr>
+<?php } ?>
+</tbody>
                 </table>
                 
                 <div style="padding: 15px; text-align: center; border-top: 1px solid #eee;">

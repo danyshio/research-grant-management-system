@@ -1,3 +1,17 @@
+<?php
+session_start();
+include("../backend/db.php");
+
+$total = mysqli_fetch_assoc(mysqli_query($conn,
+"SELECT COUNT(*) AS total FROM proposal WHERE status='Reviewed'"))['total'];
+
+$approved = mysqli_fetch_assoc(mysqli_query($conn,
+"SELECT COUNT(*) AS total FROM proposal WHERE status='Approved'"))['total'];
+
+$rejected = mysqli_fetch_assoc(mysqli_query($conn,
+"SELECT COUNT(*) AS total FROM proposal WHERE status='Rejected'"))['total'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,10 +27,10 @@
             <i class="fas fa-bars"></i> Research Grant System
         </div>
         <ul class="sidebar-menu">
-            <li><a href="hod-dashboard.html" class="active-hod"><i class="fas fa-chart-bar"></i> Dashboard</a></li>
-            <li><a href="hod-decisions.html"><i class="fas fa-gavel"></i> Pending Decisions</a></li>
-            <li><a href="hod-history.html"><i class="fas fa-check-double"></i> Approved History</a></li>
-            <li><a href="hod-notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
+            <li><a href="hod-dashboard.php" class="active-hod"><i class="fas fa-chart-bar"></i> Dashboard</a></li>
+            <li><a href="hod-decisions.php"><i class="fas fa-gavel"></i> Pending Decisions</a></li>
+            <li><a href="hod-history.php"><i class="fas fa-check-double"></i> Approved History</a></li>
+            <li><a href="hod-notifications.php"><i class="fas fa-bell"></i> Notifications</a></li>
         </ul>
         <div class="sidebar-footer">
             <a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
@@ -37,20 +51,20 @@
                 
                 <div class="stat-card" style="background-color: #f59e0b; color: white;">
                     <i class="fas fa-balance-scale" style="color: rgba(255,255,255,0.5);"></i>
-                    <h1 style="font-size: 48px;">[Count]</h1>
+                    <h1 style="font-size: 48px;"><?php echo $total; ?></h1>
                     <p>Pending Decisions</p>
                 </div>
 
                 <div class="stat-card" style="background-color: #10b981; color: white;">
                     <i class="fas fa-check-square" style="color: rgba(255,255,255,0.5);"></i>
-                    <h1 style="font-size: 48px;">[Count]</h1>
+                    <h1 style="font-size: 48px;"><?php echo $approved; ?></h1>
                     <p>Monthly Approvals</p>
                 </div>
 
                 <div class="stat-card" style="background-color: #3b82f6; color: white;">
                     <i class="fas fa-coins" style="color: rgba(255,255,255,0.5);"></i>
-                    <h1 style="font-size: 48px;">[Percent]</h1>
-                    <p>Budget Utilization</p>
+                    <h1 style="font-size: 48px;"><?php echo $rejected; ?></h1>
+                    <p>Rejected</p>
                 </div>
             </div>
 
@@ -72,14 +86,16 @@
                             <td style="color:#d97706; font-weight:bold;">[Score]/10</td>
                             <td><span class="status-badge text-green"><i class="fas fa-check-circle"></i> Reviews Complete</span></td>
                             <td>
-                                <a href="process_decision.php?action=approve&id=[ID]" style="color: #16a34a; font-weight: 600; text-decoration: none; margin-right: 15px;">Approve</a>
-                                <a href="process_decision.php?action=reject&id=[ID]" style="color: #ef4444; font-weight: 600; text-decoration: none;">Reject</a>
+                                <a href="hod-decisions.php" style="color:#16a34a; font-weight:600;">
+        Review →
+    </a>
+
                             </td>
                         </tr>
                         </tbody>
                 </table>
                 <div style="padding: 15px; text-align: right; background: #fafafa;">
-                    <a href="hod-decisions.html" style="color: #16a34a; font-size: 13px; text-decoration: none;">View All Pending →</a>
+                    <a href="hod-decisions.php" style="color: #16a34a; font-size: 13px; text-decoration: none;">View All Pending →</a>
                 </div>
             </div>
 

@@ -11,11 +11,11 @@
     <aside class="sidebar">
         <div class="sidebar-header"><i class="fas fa-bars"></i> Research Grant System</div>
         <ul class="sidebar-menu">
-            <li><a href="dashboardresearcher.html"><i class="fas fa-chart-bar"></i> Dashboard</a></li>
-            <li><a href="my-proposals.html"><i class="fas fa-folder"></i> My Proposals</a></li>
-            <li><a href="submit-new.html"><i class="fas fa-plus"></i> Submit New</a></li>
-            <li><a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
-            <li><a href="profile.html" class="active"><i class="fas fa-user"></i> Profile</a></li>
+            <li><a href="dashboardresearcher.php"><i class="fas fa-chart-bar"></i> Dashboard</a></li>
+            <li><a href="my-proposals.php"><i class="fas fa-folder"></i> My Proposals</a></li>
+            <li><a href="submit-new.php"><i class="fas fa-plus"></i> Submit New</a></li>
+            <li><a href="notifications.php"><i class="fas fa-bell"></i> Notifications</a></li>
+            <li><a href="profile.php" class="active"><i class="fas fa-user"></i> Profile</a></li>
         </ul>
         <div class="sidebar-footer"><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></div>
     </aside>

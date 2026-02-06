@@ -1,3 +1,19 @@
+<?php
+session_start();
+if(!isset($_SESSION['userId'])){
+    header("Location: index.html");
+    exit();
+}
+include("../backend/db.php");
+
+$sql = "SELECT proposalID, title, submissionDate, status 
+        FROM proposal 
+        WHERE status='Submitted'
+        ORDER BY proposalID DESC";
+
+$result = mysqli_query($conn, $sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,10 +41,10 @@
     <aside class="sidebar">
         <div class="sidebar-header" style="color: #7c3aed;"><i class="fas fa-bars"></i> Research Grant System</div>
         <ul class="sidebar-menu">
-            <li><a href="reviewer-dashboard.html"><i class="fas fa-chart-bar"></i> Dashboard</a></li>
-            <li><a href="reviewer-assigned.html" class="active-reviewer"><i class="fas fa-clipboard-list"></i> Assigned Reviews</a></li>
-            <li><a href="reviewer-history.html"><i class="fas fa-history"></i> Review History</a></li>
-            <li><a href="reviewer-notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
+            <li><a href="reviewer-dashboard.php"><i class="fas fa-chart-bar"></i> Dashboard</a></li>
+            <li><a href="reviewer-assigned.php" class="active-reviewer"><i class="fas fa-clipboard-list"></i> Assigned Reviews</a></li>
+            <li><a href="reviewer-history.php"><i class="fas fa-history"></i> Review History</a></li>
+            <li><a href="reviewer-notifications.php"><i class="fas fa-bell"></i> Notifications</a></li>
         </ul>
         <div class="sidebar-footer"><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></div>
     </aside>
@@ -36,13 +52,13 @@
     <div class="content">
         <div class="top-bar">
             <h3>Assigned Reviews</h3>
-            <div class="user-info"><span>Reviewer [Name] <i class="fas fa-user-circle"></i></span></div>
+            <div class="user-info"><span>Reviewer <?php echo $_SESSION['userName']; ?> <i class="fas fa-user-circle"></i></span></div>
         </div>
 
         <div class="scrollable-content">
             
             <div class="tabs" style="background: #4b5563;"> 
-                <a href="reviewer-assigned.html" class="tab" style="background: #7c3aed; color:white; font-weight:600;">All</a>
+                <a href="reviewer-assigned.php" class="tab" style="background: #7c3aed; color:white; font-weight:600;">All</a>
                 <a href="reviewer-assigned-not-started.html" class="tab" style="color:white;">Not Started</a>
                 <a href="reviewer-assigned-in-progress.html" class="tab" style="color:white;">In Progress</a>
                 <a href="reviewer-assigned-completed.html" class="tab" style="color:white;">Completed</a>
@@ -65,51 +81,30 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
+
                     <tbody>
+                        <?php while($row = mysqli_fetch_assoc($result)) { ?>
+        <tr>
+            <td>#<?php echo $row['proposalID']; ?></td>
+            <td><?php echo $row['title']; ?></td>
+            <td><?php echo $row['submissionDate']; ?></td>
+            <td>
+                <span class="status-badge text-gray">
+                    ● <?php echo $row['status']; ?>
+                </span>
+            </td>
+            <td>--</td>
+            <td>
+                <a href="reviewer-evaluation.php?id=<?php echo $row['proposalID']; ?>" 
+                   class="action-link btn-start">
+                   [Start Review]
+                </a>
+            </td>
+        </tr>
+    <?php } ?>
+    </tbody>
+</table>
                         
-                        <tr>
-                            <td>#RG-2025-002</td>
-                            <td>AI Research for Climate Study</td>
-                            <td>28 Jan 2026</td>
-                            <td><span class="status-badge text-gray">● Not Started</span></td>
-                            <td class="text-yellow">3 days</td>
-                            <td>
-                                <a href="reviewer-evaluation.html?id=002" class="action-link btn-start">[Start Review]</a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>#RG-2025-005</td>
-                            <td>Educational Research Methods</td>
-                            <td>No deadline</td>
-                            <td><span class="status-badge text-yellow">● In Progress</span></td>
-                            <td>--</td>
-                            <td>
-                                <a href="reviewer-evaluation.html?id=005" class="action-link btn-continue">[Continue Review]</a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>#RG-2024-004</td>
-                            <td>Renewable Energy Project</td>
-                            <td>15 Jan 2026</td>
-                            <td><span class="status-badge text-green">✔ Completed</span></td>
-                            <td>--</td>
-                            <td>
-                                <a href="#" class="action-link btn-view">[View Review]</a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>#RG-2025-001</td>
-                            <td>AI Research for Climate Prediction</td>
-                            <td class="text-red">⚠ 25 Jan 2026</td>
-                            <td><span class="status-badge text-yellow">● In Progress</span></td>
-                            <td class="text-red" style="font-weight:bold;">✖ Overdue (2 days)</td>
-                            <td>
-                                <a href="reviewer-evaluation.html?id=001" class="action-link btn-continue" style="color:#ef4444;">[Continue Review]</a>
-                            </td>
-                        </tr>
 
                     </tbody>
                 </table>
