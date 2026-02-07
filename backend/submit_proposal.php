@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("db.php");
 
 $title = $_POST['proposal_title'];
@@ -7,10 +8,17 @@ $abstract = $_POST['abstract'];
 $amount = $_POST['amount'];
 $duration = $_POST['duration'];
 
-$userId = 1; // temp test user
+$userId = $_SESSION['userId']; 
 
-$sql = "INSERT INTO proposal (userId, title, abstract, submissionDate, status)
-        VALUES ('$userId', '$title', '$abstract', NOW(), 'Submitted')";
+
+$pdfName = $_FILES['pdf_file']['name'];
+$tmpName = $_FILES['pdf_file']['tmp_name'];
+
+$uploadPath = "../uploads/" . $pdfName;
+move_uploaded_file($tmpName, $uploadPath);
+
+$sql = "INSERT INTO proposal (userId, title, abstract, submissionDate, status, pdfFile)
+VALUES ('$userId', '$title', '$abstract', NOW(), 'Submitted', '$pdfName')";
 
 mysqli_query($conn, $sql);
 

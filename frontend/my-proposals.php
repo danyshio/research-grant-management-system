@@ -1,11 +1,12 @@
-<?php
+<?php session_start(); 
 include("../backend/db.php");
 
-$userId = 1; 
+$userId = $_SESSION['userId'];
 
 $sql = "SELECT * FROM proposal WHERE userId='$userId' ORDER BY proposalId DESC";
 $result = mysqli_query($conn, $sql);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,18 +32,14 @@ $result = mysqli_query($conn, $sql);
     <div class="content">
         <div class="top-bar">
             <h3>My Proposals</h3>
-            <div class="user-info"><span><?php echo $_SESSION['userName'] ?? 'Researcher'; ?> <i class="fas fa-user-circle"></i></span></div>
+            <div class="user-info"><span><?php echo $_SESSION['userName'] ?? 'Iliya Researcher'; ?> <i class="fas fa-user-circle"></i></span></div>
         </div>
 
         <div class="scrollable-content">
             
             <div class="researcher-tabs">
-                <a href="my-proposals.php" class="researcher-tab active">All</a>
-                <a href="my-proposals-draft.php" class="researcher-tab">Draft</a>
-                <a href="my-proposals-submitted.php" class="researcher-tab">Submitted</a>
-                <a href="my-proposals-review.php" class="researcher-tab">Under Review</a>
-                <a href="my-proposals-approved.php" class="researcher-tab">Approved</a>
-                <a href="my-proposals-rejected.php" class="researcher-tab">Rejected</a>
+               <a href="my-proposals.php" class="researcher-tab active">All</a>
+
             </div>
 
             <div class="table-container" style="border-top-left-radius: 0;">

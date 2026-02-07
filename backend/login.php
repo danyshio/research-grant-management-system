@@ -25,7 +25,7 @@ if (mysqli_num_rows($result) == 1) {
         header("Location: ../frontend/reviewer-dashboard.php");
     }
     elseif ($row['role'] == 'HOD') {
-        header("Location: ../frontend/hod-dashboard.html");
+        header("Location: ../frontend/hod-dashboard.php");
     }
     elseif ($row['role'] == 'Admin') {
         header("Location: ../frontend/admin-dashboard.html");

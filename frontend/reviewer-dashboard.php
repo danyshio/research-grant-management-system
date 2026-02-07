@@ -69,7 +69,7 @@ $proposal_result = mysqli_query($conn, $proposal_sql);
         <div class="top-bar">
             <h3 class="text-purple">Welcome, <?php echo $userName; ?></h3>
             <div class="user-info">
-                <span>Reviewer <?php echo $userName; ?> <i class="fas fa-user-circle"></i></span>
+                <span><?php echo $_SESSION['userName'] ?? 'Reviewer Dr Danysh'; ?> <i class="fas fa-user-circle"></i></span>
             </div>
         </div>
 
@@ -131,9 +131,8 @@ $proposal_result = mysqli_query($conn, $proposal_sql);
                 <div style="padding: 15px; display: flex; justify-content: space-between; align-items: center; background: #fafafa;">
                     <span style="font-size: 13px; color: #666;">Actions:</span>
                     <div style="gap: 10px; display: flex;">
-                        <a href="reviewer-evaluation.php?id=<?php echo $row['proposalId']; ?>">StartReview</a>
                         <span style="color:#ddd;">|</span>
-                        <a href="reviewer-assigned.html" style="color:#666;">View All Assigned</a>
+                        <a href="reviewer-assigned.php" style="color:#666;">View All Assigned</a>
                     </div>
                 </div>
             </div>

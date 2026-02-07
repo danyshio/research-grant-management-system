@@ -39,9 +39,9 @@ $rejected = mysqli_fetch_assoc(mysqli_query($conn,
 
     <div class="content">
         <div class="top-bar">
-            <h3>Welcome, Prof [Name]</h3>
+            <h3>Welcome, Prof Thash</h3>
             <div class="user-info">
-                <span>HOD [Name] <i class="fas fa-user-circle"></i></span>
+                <span><?php echo $_SESSION ['userName'] ?? 'Prof Thash HOD'; ?> <i class="fas fa-user-circle"></i></span>
             </div>
         </div>
 

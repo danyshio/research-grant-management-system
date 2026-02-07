@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +25,7 @@
         <div class="top-bar">
             <h3>Submit New Research Proposal</h3>
             <div class="user-info">
-                <span>[User Name] <i class="fas fa-user-circle"></i></span>
+                <span><?php echo $_SESSION['username'] ?? 'Iliya Researcher'; ?> <i class="fas fa-user-circle"></i></span>
             </div>
         </div>
 
@@ -75,13 +76,12 @@
                     <div class="upload-box">
                         <i class="fas fa-cloud-upload-alt" style="font-size: 30px; margin-bottom: 10px;"></i><br>
                         Drag & drop PDF file here<br>
-                        <input type="file" name="proposal_file" style="margin-top:10px;">
+                        <input type="file" name="pdf_file" style="margin-top:10px;">
                     </div>
                 </div>
 
                 <div style="text-align: right; margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
                     <button type="button" style="padding: 10px 20px; border: none; background: transparent; color: #ef4444; cursor: pointer;">Cancel</button>
-                    <button type="submit" name="action" value="draft" style="padding: 10px 20px; border: 1px solid #ccc; background: white; border-radius: 5px;">Save Draft</button>
                     <button type="submit" name="action" value="submit" class="btn-primary" style="width: auto; padding: 10px 30px;">Submit</button>
                 </div>
 

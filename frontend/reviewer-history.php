@@ -8,17 +8,10 @@ if(!isset($_SESSION['userId'])){
 
 include("../backend/db.php");
 
-$sql = "
-SELECT 
-    p.proposalID,
-    p.title,
-    r.decision,
-    r.comments,
-    r.reviewDate
-FROM review r
-JOIN proposal p ON r.proposalId = p.proposalID
-ORDER BY r.reviewDate DESC
-";
+$sql = "SELECT review.*, proposal.proposalId, proposal.title AS proposalTitle, proposal.status AS proposalStatus
+FROM review
+JOIN proposal ON review.proposalId = proposal.proposalId
+ORDER BY review.reviewDate DESC";
 
 $result = mysqli_query($conn, $sql);
 ?>
@@ -52,7 +45,7 @@ $result = mysqli_query($conn, $sql);
         <div class="top-bar">
             <h3>Review History</h3>
             <div class="user-info">
-                <span>Reviewer <?php echo $_SESSION['userName']; ?> <i class="fas fa-user-circle"></i></span>
+                <span><?php echo $_SESSION['userName'] ?? 'Reviewer Dr Danysh'; ?> <i class="fas fa-user-circle"></i></span>
             </div>
         </div>
 
@@ -99,8 +92,8 @@ $result = mysqli_query($conn, $sql);
                     <tbody>
 <?php while($row = mysqli_fetch_assoc($result)) { ?>
 <tr>
-    <td>#<?php echo $row['proposalID']; ?></td>
-    <td><?php echo $row['title']; ?></td>
+    <td>#<?php echo $row['proposalId']; ?></td>
+    <td><?php echo $row['proposaltitle']; ?></td>
     <td>--</td>
     <td><?php echo $row['reviewDate']; ?></td>
     <td>--</td>
@@ -110,6 +103,18 @@ $result = mysqli_query($conn, $sql);
         </span>
     </td>
     <td>
+        <?php
+if($row['status'] == "Approved"){
+    echo "<span style='color:green;font-weight:600;'>Approved by HOD</span>";
+}
+elseif($row['status'] == "Rejected"){
+    echo "<span style='color:red;font-weight:600;'>Rejected by HOD</span>";
+}
+else{
+    echo "<span style='color:orange;'>Waiting HOD</span>";
+}
+?>
+    </td>
         <a href="#" class="btn-purple" style="padding:5px 15px; font-size:12px;">
             View Details
         </a>
@@ -121,7 +126,8 @@ $result = mysqli_query($conn, $sql);
                 
                 <div style="padding: 15px; text-align: center; border-top: 1px solid #eee;">
                     <span style="font-size: 13px; color: #666; cursor: pointer;">&laquo; Previous</span>
-                    <span style="font-size: 13px; margin: 0 10px;">Page 1 of 5</span>
+                    <span style="font-size: 13px; margin: 0 10px;">Page 
+                    1 of 5</span>
                     <span style="font-size: 13px; color: #7c3aed; cursor: pointer; font-weight: 600;">Next &raquo;</span>
                 </div>
             </div>

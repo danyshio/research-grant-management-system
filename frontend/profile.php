@@ -1,3 +1,7 @@
+<?php
+session_start();
+include("../backend/db.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +28,7 @@
         <div class="top-bar">
             <div></div> 
             <div class="user-info">
-                <span>[User Name] <i class="fas fa-user-circle"></i></span>
+                <span><?php echo $_SESSION['userName']; 'Iliya Researcher'; ?> <i class="fas fa-user-circle"></i></span>
             </div>
         </div>
 

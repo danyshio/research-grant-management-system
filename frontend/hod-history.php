@@ -38,7 +38,7 @@ $result = mysqli_query($conn, $sql);
     <div class="content">
         <div class="top-bar">
             <h3>Decision History</h3>
-            <div class="user-info"><span>HOD [Name] <i class="fas fa-user-circle"></i></span></div>
+            <div class="user-info"><span><?php echo $_SESSION['userName'] ?? 'Prof Thash HOD'; ?> <i class="fas fa-user-circle"></i></span></div>
         </div>
 
         <div class="scrollable-content">

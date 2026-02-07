@@ -6,7 +6,7 @@ if(!isset($_SESSION['userId'])){
 }
 include("../backend/db.php");
 
-$sql = "SELECT proposalID, title, submissionDate, status 
+$sql = "SELECT proposalID, title, submissionDate, status, pdfFile
         FROM proposal 
         WHERE status='Submitted'
         ORDER BY proposalID DESC";
@@ -52,7 +52,7 @@ $result = mysqli_query($conn, $sql);
     <div class="content">
         <div class="top-bar">
             <h3>Assigned Reviews</h3>
-            <div class="user-info"><span>Reviewer <?php echo $_SESSION['userName']; ?> <i class="fas fa-user-circle"></i></span></div>
+            <div class="user-info"><span><?php echo $_SESSION['userName'] ?? 'Reviewer Dr Danysh'; ?> <i class="fas fa-user-circle"></i></span></div>
         </div>
 
         <div class="scrollable-content">
@@ -93,13 +93,20 @@ $result = mysqli_query($conn, $sql);
                     ● <?php echo $row['status']; ?>
                 </span>
             </td>
-            <td>--</td>
             <td>
-                <a href="reviewer-evaluation.php?id=<?php echo $row['proposalID']; ?>" 
-                   class="action-link btn-start">
-                   [Start Review]
-                </a>
-            </td>
+<?php if(!empty($row['pdfFile'])) { ?>
+
+    <a href="../uploads/<?php echo $row['pdfFile']; ?>" target="_blank">View PDF</a>
+    <br>
+
+    <a href="reviewer-evaluation.php?proposalId=<?php echo $row['proposalId']; ?>">
+        Submit Review
+    </a>
+
+<?php } ?>
+
+
+</td>
         </tr>
     <?php } ?>
     </tbody>

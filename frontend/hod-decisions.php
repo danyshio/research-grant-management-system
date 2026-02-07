@@ -8,7 +8,7 @@ if(!isset($_SESSION['userId'])){
 }
 
 $sql = "
-SELECT proposal.proposalId, proposal.title, user.name AS researcher
+SELECT proposal.proposalId, proposal.title, proposal.pdfFile, user.name AS researcher
 FROM proposal
 JOIN user ON proposal.userId = user.userId
 WHERE proposal.status='Reviewed'
@@ -42,7 +42,7 @@ $result = mysqli_query($conn, $sql);
     <div class="content">
         <div class="top-bar">
             <h3>Pending Decisions</h3>
-            <div class="user-info"><span>HOD [Name] <i class="fas fa-user-circle"></i></span></div>
+            <div class="user-info"><span><?php echo $_SESSION['userName'] ?? 'Prof Thash HOD'; ?> <i class="fas fa-user-circle"></i></span></div>
         </div>
 
         <div class="scrollable-content">
@@ -85,12 +85,20 @@ $result = mysqli_query($conn, $sql);
     </td>
 
     <td style="vertical-align: top;">
-        <form action="../backend/process_decision.php" method="POST" style="display:flex; gap:5px;">
-            <input type="hidden" name="proposal_id" value="<?php echo $row['proposalId']; ?>">
+        <?php if (!empty($row['pdfFile'])) { ?>
+        <a href="../uploads/<?php echo $row['pdfFile']; ?>" target="_blank" style="font-weight:600;">
+            View PDF
+        </a>
+        <br><br>
+    <?php } ?>
 
-            <button type="submit" name="decision" value="approve" class="btn-green">Approve</button>
-            <button type="submit" name="decision" value="reject" class="btn-outline-red">Reject</button>
-        </form>
+    <form action="../backend/process_decision.php" method="POST" style="display:flex; gap:5px;">
+        <input type="hidden" name="proposal_id" value="<?php echo $row['proposalId']; ?>">
+
+        <button type="submit" name="decision" value="approve" class="btn-green">Approve</button>
+        <button type="submit" name="decision" value="reject" class="btn-outline-red">Reject</button>
+    </form>
+
     </td>
 </tr>
 

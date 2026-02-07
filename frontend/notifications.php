@@ -37,7 +37,7 @@ $result = mysqli_query($conn, $sql);
         <div class="top-bar">
             <h3>Notifications</h3>
             <div class="user-info">
-                <span>[User Name] <i class="fas fa-user-circle"></i></span>
+                <span><?php echo $_SESSION['userName'] ?? 'Iliya Researcher'; ?> <i class="fas fa-user-circle"></i></span>
             </div>
         </div>
 
