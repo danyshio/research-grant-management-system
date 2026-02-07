@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Allocation - Admin</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .budget-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .budget-table th, .budget-table td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #ddd; }
+        .budget-table th { background: #2c3e50; color: white; }
+        .allocate-btn { background: #27ae60; color: white; padding: 5px 10px; border: none; border-radius: 4px; cursor: pointer; }
+        .back-link { color: #3498db; text-decoration: none; }
+        .amount { font-weight: bold; color: #2e7d32; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Budget Allocation</h1>
+            <a href="admin-dashboard.html" class="back-link">← Back to Dashboard</a>
+        </div>
+        
+        <table class="budget-table">
+            <thead>
+                <tr>
+                    <th>Proposal</th>
+                    <th>Researcher</th>
+                    <th>Requested Amount</th>
+                    <th>Allocated Amount</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>AI-Based Flood Prediction System</td>
+                    <td>John Researcher</td>
+                    <td class="amount">RM 50,000</td>
+                    <td class="amount">RM 50,000</td>
+                    <td style="color: #27ae60; font-weight: bold;">Allocated</td>
+                    <td><button class="allocate-btn">Modify</button></td>
+                </tr>
+                <tr>
+                    <td>AI Cancer Detection</td>
+                    <td>Jane Researcher</td>
+                    <td class="amount">RM 75,000</td>
+                    <td class="amount">RM 70,000</td>
+                    <td style="color: #f39c12; font-weight: bold;">Partially Allocated</td>
+                    <td><button class="allocate-btn">Modify</button></td>
+                </tr>
+                <tr>
+                    <td>Renewable Energy Research</td>
+                    <td>Mike Researcher</td>
+                    <td class="amount">RM 30,000</td>
+                    <td class="amount">RM 0</td>
+                    <td style="color: #e74c3c; font-weight: bold;">Pending</td>
+                    <td><button class="allocate-btn">Allocate</button></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+            <h3>Budget Summary</h3>
+            <p>Total Budget Available: <strong>RM 500,000</strong></p>
+            <p>Total Allocated: <strong>RM 120,000</strong></p>
+            <p>Remaining Balance: <strong>RM 380,000</strong></p>
+        </div>
+    </div>
+    
+    <script>
+        document.querySelectorAll('.allocate-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert('Budget allocation form would open here. In real system, this would connect to backend.');
+            });
+        });
+    </script>
+</body>
+</html>

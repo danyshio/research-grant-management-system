@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Reports - Admin</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { color: #3498db; text-decoration: none; }
+        .report-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
+        .report-card { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .report-card h3 { margin-top: 0; color: #2c3e50; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; }
+        .download-btn { background: #27ae60; color: white; padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer; margin-top: 15px; }
+        .date-range { display: flex; gap: 10px; margin-bottom: 20px; }
+        .date-range input { padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        .generate-btn { background: #3498db; color: white; padding: 8px 20px; border: none; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>System Reports & Analytics</h1>
+            <a href="admin-dashboard.html" class="back-link">← Back to Dashboard</a>
+        </div>
+        
+        <div class="date-range">
+            <input type="date" id="startDate">
+            <input type="date" id="endDate">
+            <button class="generate-btn" onclick="generateReport()">Generate Report</button>
+        </div>
+        
+        <div class="report-cards">
+            <div class="report-card">
+                <h3>📊 User Activity Report</h3>
+                <p>Shows login frequency and user engagement metrics</p>
+                <ul>
+                    <li>Most active researchers</li>
+                    <li>Review completion rates</li>
+                    <li>System access patterns</li>
+                </ul>
+                <button class="download-btn" onclick="downloadReport('user-activity')">Download PDF</button>
+            </div>
+            
+            <div class="report-card">
+                <h3>💰 Budget Utilization Report</h3>
+                <p>Detailed analysis of grant fund allocation and spending</p>
+                <ul>
+                    <li>Department-wise budget distribution</li>
+                    <li>Fund utilization percentage</li>
+                    <li>Pending allocations</li>
+                </ul>
+                <button class="download-btn" onclick="downloadReport('budget')">Download Excel</button>
+            </div>
+            
+            <div class="report-card">
+                <h3>📈 Proposal Statistics</h3>
+                <p>Comprehensive proposal submission and approval metrics</p>
+                <ul>
+                    <li>Submission trends by month</li>
+                    <li>Approval/rejection ratios</li>
+                    <li>Average review time</li>
+                </ul>
+                <button class="download-btn" onclick="downloadReport('proposal-stats')">Download CSV</button>
+            </div>
+            
+            <div class="report-card">
+                <h3>🎯 Performance Metrics</h3>
+                <p>Reviewer and department performance analysis</p>
+                <ul>
+                    <li>Reviewer response times</li>
+                    <li>Department approval rates</li>
+                    <li>System performance indicators</li>
+                </ul>
+                <button class="download-btn" onclick="downloadReport('performance')">Download PDF</button>
+            </div>
+        </div>
+        
+        <div style="margin-top: 40px; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+            <h3>Report Generation History</h3>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+                <thead>
+                    <tr style="background: #e9ecef;">
+                        <th style="padding: 10px; text-align: left;">Report Name</th>
+                        <th style="padding: 10px; text-align: left;">Generated On</th>
+                        <th style="padding: 10px; text-align: left;">Format</th>
+                        <th style="padding: 10px; text-align: left;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 10px; border-bottom: 1px solid #dee2e6;">Monthly Summary - Jan 2026</td>
+                        <td style="padding: 10px; border-bottom: 1px solid #dee2e6;">2026-02-01</td>
+                        <td style="padding: 10px; border-bottom: 1px solid #dee2e6;">PDF</td>
+                        <td style="padding: 10px; border-bottom: 1px solid #dee2e6;">
+                            <button style="background: #3498db; color: white; border: none; padding: 5px 10px; border-radius: 3px;">View</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        function generateReport() {
+            const start = document.getElementById('startDate').value;
+            const end = document.getElementById('endDate').value;
+            if (!start || !end) {
+                alert('Please select both start and end dates');
+                return;
+            }
+            alert(`Generating report from ${start} to ${end}...\n(Backend implementation needed)`);
+        }
+        
+        function downloadReport(type) {
+            alert(`Downloading ${type} report...\n(Backend implementation needed)`);
+        }
+    </script>
+</body>
+</html>

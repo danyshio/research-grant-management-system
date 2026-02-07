@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Role Assignment - Admin</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .role-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .role-table th, .role-table td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #ddd; }
+        .role-table th { background: #2c3e50; color: white; }
+        .role-select { padding: 5px; border-radius: 4px; border: 1px solid #ddd; }
+        .update-btn { background: #3498db; color: white; padding: 5px 10px; border: none; border-radius: 4px; cursor: pointer; }
+        .back-link { color: #3498db; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Role Assignment</h1>
+            <a href="admin-dashboard.html" class="back-link">← Back to Dashboard</a>
+        </div>
+        
+        <table class="role-table">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Current Role</th>
+                    <th>New Role</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>John Researcher (researcher@university.edu)</td>
+                    <td>Researcher</td>
+                    <td>
+                        <select class="role-select">
+                            <option>Researcher</option>
+                            <option>Reviewer</option>
+                            <option>HOD</option>
+                            <option>Admin</option>
+                        </select>
+                    </td>
+                    <td><button class="update-btn">Update Role</button></td>
+                </tr>
+                <tr>
+                    <td>Dr. Sarah Reviewer (reviewer@university.edu)</td>
+                    <td>Reviewer</td>
+                    <td>
+                        <select class="role-select">
+                            <option>Researcher</option>
+                            <option>Reviewer</option>
+                            <option>HOD</option>
+                            <option>Admin</option>
+                        </select>
+                    </td>
+                    <td><button class="update-btn">Update Role</button></td>
+                </tr>
+                <tr>
+                    <td>Mohamed Admin (admin@university.edu)</td>
+                    <td>Admin</td>
+                    <td>
+                        <select class="role-select">
+                            <option>Researcher</option>
+                            <option>Reviewer</option>
+                            <option>HOD</option>
+                            <option>Admin</option>
+                        </select>
+                    </td>
+                    <td><button class="update-btn">Update Role</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <script>
+        document.querySelectorAll('.update-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert('Role would be updated. In real system, this would call backend API.');
+            });
+        });
+    </script>
+</body>
+</html>
