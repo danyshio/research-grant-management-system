@@ -3,85 +3,280 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Role Assignment - Admin</title>
+    <title>Research Grant System - Role Assignment</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        .role-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        .role-table th, .role-table td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #ddd; }
-        .role-table th { background: #2c3e50; color: white; }
-        .role-select { padding: 5px; border-radius: 4px; border: 1px solid #ddd; }
-        .update-btn { background: #3498db; color: white; padding: 5px 10px; border: none; border-radius: 4px; cursor: pointer; }
-        .back-link { color: #3498db; text-decoration: none; }
+        .role-assignment {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            margin-top: 20px;
+        }
+        
+        .role-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .role-item:last-child {
+            border-bottom: none;
+        }
+        
+        .user-details {
+            flex: 1;
+        }
+        
+        .user-name {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .user-email {
+            color: #64748b;
+            font-size: 14px;
+        }
+        
+        .current-role {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 20px;
+            min-width: 100px;
+            text-align: center;
+        }
+        
+        .role-select {
+            padding: 8px 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 5px;
+            margin-right: 15px;
+            min-width: 150px;
+        }
+        
+        .update-btn {
+            padding: 8px 16px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .update-btn:hover {
+            background: #2563eb;
+        }
+        
+        .bulk-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .save-all-btn {
+            padding: 10px 20px;
+            background: #22c55e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .reset-btn {
+            padding: 10px 20px;
+            background: #f59e0b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .cancel-btn {
+            padding: 10px 20px;
+            background: #64748b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Role Assignment</h1>
-            <a href="admin-dashboard.html" class="back-link">← Back to Dashboard</a>
+    <div class="main-layout">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                Research Grant System
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li><a href="admin-dashboard.html">
+                    <i class="fas fa-tachometer-alt"></i> Admin Dashboard
+                </a></li>
+                <li><a href="admin-users.html">
+                    <i class="fas fa-users"></i> User Management
+                </a></li>
+                <li><a href="admin-roles.html" class="active">
+                    <i class="fas fa-user-tag"></i> Role Assignment
+                </a></li>
+                <li><a href="admin-budget.html">
+                    <i class="fas fa-money-bill-wave"></i> Budget Allocation
+                </a></li>
+                <li><a href="admin-reports.html">
+                    <i class="fas fa-chart-bar"></i> System Reports
+                </a></li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <a href="../backend/logout.php">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
         </div>
         
-        <table class="role-table">
-            <thead>
-                <tr>
-                    <th>User</th>
-                    <th>Current Role</th>
-                    <th>New Role</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>John Researcher (researcher@university.edu)</td>
-                    <td>Researcher</td>
-                    <td>
+        <div class="content">
+            <div class="top-bar">
+                <div class="user-info">
+                    <span>Welcome, <strong>Admin Mohamed</strong></span>
+                </div>
+                <div style="display: flex; gap: 20px;">
+                    <div class="icon-badge">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scrollable-content">
+                <h1 style="margin-bottom: 20px;">Role Assignment</h1>
+                <p style="color: #64748b; margin-bottom: 30px;">Assign roles to system users</p>
+                
+                <div class="role-assignment">
+                    <!-- User 1 -->
+                    <div class="role-item">
+                        <div class="user-details">
+                            <div class="user-name">Mohamed</div>
+                            <div class="user-email">mohamed@university.edu</div>
+                        </div>
+                        <span class="current-role" style="background: #dbeafe; color: #1e40af;">Admin</span>
                         <select class="role-select">
                             <option>Researcher</option>
                             <option>Reviewer</option>
                             <option>HOD</option>
-                            <option>Admin</option>
+                            <option selected>Admin</option>
                         </select>
-                    </td>
-                    <td><button class="update-btn">Update Role</button></td>
-                </tr>
-                <tr>
-                    <td>Dr. Sarah Reviewer (reviewer@university.edu)</td>
-                    <td>Reviewer</td>
-                    <td>
+                        <button class="update-btn" onclick="updateRole(1)">Update</button>
+                    </div>
+                    
+                    <!-- User 2 -->
+                    <div class="role-item">
+                        <div class="user-details">
+                            <div class="user-name">Dr. Lee</div>
+                            <div class="user-email">lee@university.edu</div>
+                        </div>
+                        <span class="current-role" style="background: #f3e8ff; color: #6b21a8;">Reviewer</span>
                         <select class="role-select">
                             <option>Researcher</option>
+                            <option selected>Reviewer</option>
+                            <option>HOD</option>
+                            <option>Admin</option>
+                        </select>
+                        <button class="update-btn" onclick="updateRole(2)">Update</button>
+                    </div>
+                    
+                    <!-- User 3 -->
+                    <div class="role-item">
+                        <div class="user-details">
+                            <div class="user-name">Prof. Ahmad</div>
+                            <div class="user-email">ahmad@university.edu</div>
+                        </div>
+                        <span class="current-role" style="background: #fef3c7; color: #92400e;">HOD</span>
+                        <select class="role-select">
+                            <option>Researcher</option>
+                            <option>Reviewer</option>
+                            <option selected>HOD</option>
+                            <option>Admin</option>
+                        </select>
+                        <button class="update-btn" onclick="updateRole(3)">Update</button>
+                    </div>
+                    
+                    <!-- User 4 -->
+                    <div class="role-item">
+                        <div class="user-details">
+                            <div class="user-name">Sarah Lim</div>
+                            <div class="user-email">sarah@university.edu</div>
+                        </div>
+                        <span class="current-role" style="background: #dcfce7; color: #166534;">Researcher</span>
+                        <select class="role-select">
+                            <option selected>Researcher</option>
                             <option>Reviewer</option>
                             <option>HOD</option>
                             <option>Admin</option>
                         </select>
-                    </td>
-                    <td><button class="update-btn">Update Role</button></td>
-                </tr>
-                <tr>
-                    <td>Mohamed Admin (admin@university.edu)</td>
-                    <td>Admin</td>
-                    <td>
+                        <button class="update-btn" onclick="updateRole(4)">Update</button>
+                    </div>
+                    
+                    <!-- User 5 -->
+                    <div class="role-item">
+                        <div class="user-details">
+                            <div class="user-name">Alex Kumar</div>
+                            <div class="user-email">alex@university.edu</div>
+                        </div>
+                        <span class="current-role" style="background: #dcfce7; color: #166534;">Researcher</span>
                         <select class="role-select">
-                            <option>Researcher</option>
+                            <option selected>Researcher</option>
                             <option>Reviewer</option>
                             <option>HOD</option>
                             <option>Admin</option>
                         </select>
-                    </td>
-                    <td><button class="update-btn">Update Role</button></td>
-                </tr>
-            </tbody>
-        </table>
+                        <button class="update-btn" onclick="updateRole(5)">Update</button>
+                    </div>
+                </div>
+                
+                <!-- Bulk Actions -->
+                <div class="bulk-actions">
+                    <button class="save-all-btn" onclick="saveAllRoles()">
+                        <i class="fas fa-save"></i> Save All Changes
+                    </button>
+                    <button class="reset-btn" onclick="resetRoles()">
+                        <i class="fas fa-undo"></i> Reset to Default
+                    </button>
+                    <button class="cancel-btn" onclick="cancelChanges()">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
     
     <script>
-        document.querySelectorAll('.update-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                alert('Role would be updated. In real system, this would call backend API.');
-            });
-        });
+        function updateRole(userId) {
+            alert('Role updated for user ID: ' + userId);
+        }
+        
+        function saveAllRoles() {
+            alert('All role changes saved.');
+        }
+        
+        function resetRoles() {
+            if (confirm('Reset all role changes?')) {
+                alert('Roles reset to default.');
+            }
+        }
+        
+        function cancelChanges() {
+            if (confirm('Cancel all changes?')) {
+                alert('Changes cancelled.');
+            }
+        }
     </script>
 </body>
 </html>
